@@ -4,6 +4,7 @@ import EventItem from '@/components/EventItem'
 import { API_URL } from '@/config/index'
 
 export default function HomePage({ events }) {
+	console.log(events)
 	return (
 		<Layout>
 			<h1>Upcomming Events</h1>
@@ -30,6 +31,6 @@ export async function getStaticProps() {
 
 	return {
 		props: { events: events.slice(0, 3) },
-		revalidate: 1 //after 1 second
+		revalidate: 1, //after 1 second
 	}
 }
