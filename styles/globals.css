@@ -40,6 +40,8 @@ h1 {
 }
 
 .btn-secondary {
+	display: flex;
+	align-items: center;
 	font: inherit;
 	font-size: 13px;
 	background: #000;

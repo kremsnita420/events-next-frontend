@@ -30,3 +30,8 @@
 	display: block;
 	margin-top: 40px;
 }
+
+.editButtons {
+	display: flex;
+	align-items: center;
+}
