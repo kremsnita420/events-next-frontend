@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import AuthContext from '@/context/AuthContext'
@@ -13,9 +13,11 @@ export default function LoginPage() {
 
 	const { login, error } = useContext(AuthContext)
 
+	useEffect(() => error && toast.error(error))
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		login(email, password)
+		login({ email, password })
 	}
 
 	return (
@@ -35,7 +37,6 @@ export default function LoginPage() {
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
-
 					<div>
 						<label htmlFor='password'>Password</label>
 						<input
@@ -46,7 +47,7 @@ export default function LoginPage() {
 						/>
 					</div>
 
-					<input type='submit' value='Log In' className='btn' />
+					<input type='submit' value='Login' className='btn' />
 				</form>
 
 				<p>
