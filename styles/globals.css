@@ -13,6 +13,7 @@ body {
 }
 
 a {
+	line-height: 1;
 	text-decoration: none;
 	color: steelblue;
 }
@@ -40,8 +41,6 @@ h1 {
 }
 
 .btn-secondary {
-	display: flex;
-	align-items: center;
 	font: inherit;
 	font-size: 13px;
 	background: #000;
@@ -51,6 +50,12 @@ h1 {
 	padding: 5px 15px;
 	margin: 0 20px;
 	cursor: pointer;
+}
+
+.pagination-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .btn-wrapper {
