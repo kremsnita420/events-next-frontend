@@ -1,28 +1,31 @@
-import { useState, useEffect, useContext } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import AuthContext from '@/context/AuthContext'
 import styles from '@/styles/AuthForm.module.css'
 
 export default function RegisterPage() {
-	const [email, setEmail] = useState('')
 	const [username, setUsername] = useState('')
+	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [passwordConfirm, setPasswordConfirm] = useState('')
 
 	const { register, error } = useContext(AuthContext)
 
+	useEffect(() => error && toast.error(error))
+
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		register(username, email, password)
-
 		if (password !== passwordConfirm) {
-			toast.error('Password do not match!')
+			toast.error('Passwords do not match!')
+			return
 		}
+
+		register({ username, email, password })
 	}
 
 	return (
@@ -42,7 +45,6 @@ export default function RegisterPage() {
 							onChange={(e) => setUsername(e.target.value)}
 						/>
 					</div>
-
 					<div>
 						<label htmlFor='email'>Email Address</label>
 						<input
@@ -52,7 +54,6 @@ export default function RegisterPage() {
 							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
-
 					<div>
 						<label htmlFor='password'>Password</label>
 						<input
@@ -62,7 +63,6 @@ export default function RegisterPage() {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
-
 					<div>
 						<label htmlFor='passwordConfirm'>
 							Confirm Password
@@ -80,7 +80,7 @@ export default function RegisterPage() {
 
 				<p>
 					Already have an account?{' '}
-					<Link href='/account/login'>Log In</Link>
+					<Link href='/account/login'>Login</Link>
 				</p>
 			</div>
 		</Layout>
