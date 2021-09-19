@@ -17,28 +17,23 @@ export default function EventMap({ evt }) {
     })
 
     useEffect(() => {
-        // Get latitude & longitude from address.
-        Geocode.fromAddress(evt.address).then(
-            (response) => {
-                const { lat, lng } = response.results[0].geometry.location;
-                setLat(lat)
-                setLng(lng)
-                setViewport({ ...viewport, latitude: lat, longitude: lng })
+        fetch(`https://api.geoapify.com/v1/geocode/search?text=${evt.address}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`)
+            .then(response => response.json())
+            .then(result => {
+                const { lat, lon } = result.features[0].properties;
+                setLat(lat);
+                setLng(lon);
+                setViewport({ ...viewport, latitude: lat, longitude: lon });
                 setLoading(false)
-            },
-            (error) => {
-                console.error(error)
-            }
-        )
-    })
+            })
+            .catch(error => console.log('error', error));
+
+    }, [])
 
     // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
-    Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY)
+    Geocode.setApiKey(process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY)
 
     if (loading) return false
-
-    console.log(lat, lng)
-
 
     return (
         <ReactMapGl {...viewport}
