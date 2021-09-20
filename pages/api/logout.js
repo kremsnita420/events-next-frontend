@@ -1,7 +1,7 @@
 import cookie from 'cookie'
 import { API_URL } from '@/config/index'
 
-export default async (req, res) => {
+const logout = async (req, res) => {
     if (req.method === 'POST') {
         // Destroy cookie
         res.setHeader(
@@ -21,3 +21,5 @@ export default async (req, res) => {
         res.status(405).json({ message: `Method ${req.method} not allowed` })
     }
 }
+
+export default logout

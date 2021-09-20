@@ -28,7 +28,7 @@ export default function EventMap({ evt }) {
             })
             .catch(error => console.log('error', error));
 
-    }, [])
+    }, [evt.address, viewport])
 
     // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
     Geocode.setApiKey(process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY)
@@ -41,7 +41,7 @@ export default function EventMap({ evt }) {
             onViewportChange={(vp) => setViewport(vp)}
         >
             <Marker key={evt.id} latitude={lat} longitude={lng}>
-                <Image src='/images/pin.svg' width={30} height={30} />
+                <Image src='/images/pin.svg' width={30} height={30} alt='pin marker' />
             </Marker>
         </ReactMapGl>
     )
