@@ -7,8 +7,6 @@ import styles from '@/styles/Layout.module.css'
 import Footer from './Footer'
 import Showcase from './Showcase'
 
-import previewImage from '/images/sample/event1.jpg'
-
 export default function Layout({ title, keywords, description, children }) {
 	const router = useRouter()
 
@@ -20,7 +18,7 @@ export default function Layout({ title, keywords, description, children }) {
 				<meta name='description' content={description} />
 				<meta
 					property='og:image'
-					content={previewImage}
+					content='/images/sample/event1.jpg'
 					key='ogimage'
 				/>
 			</Head>
