@@ -35,7 +35,7 @@
 	color: red;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 890px) {
 	.header {
 		flex-direction: column;
 		height: auto;
